@@ -1,3 +1,27 @@
+@font-face {
+  font-family: "Neutra Text";
+  src: url("assets/fonts/Neutra%20Text%20Book.otf") format("opentype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Neutra Text";
+  src: url("assets/fonts/Neutra%20Text%20Book.otf") format("opentype");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Neutra Text";
+  src: url("assets/fonts/Neutra%20Text%20Bold.otf") format("opentype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
 :root {
   --ink: #0b161d;
   --ink-soft: #152530;
@@ -15,7 +39,7 @@
   --radius-xl: 20px;
   --radius-2xl: 30px;
   --max: 1280px;
-  --heading: "Barlow Condensed", "Archivo Narrow", "Helvetica Neue", "Arial Narrow", sans-serif;
+  --heading: "Neutra Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --body: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
@@ -183,14 +207,14 @@ main,
 
 .hero-copy {
   position: absolute;
-  top: clamp(116px, 11vw, 170px);
-  left: clamp(20px, 5vw, 72px);
+  top: clamp(104px, 10vw, 146px);
+  left: clamp(12px, 4.3vw, 58px);
   width: min(86vw, 520px);
   background: linear-gradient(118deg, rgba(217, 217, 217, 0.18), rgba(155, 165, 171, 0.12));
   border-radius: var(--radius-xl);
   border: 1px solid rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(24px);
-  padding: 16px 22px 18px;
+  backdrop-filter: blur(30px);
+  padding: 18px 22px 18px;
 }
 
 .hero-copy h1 {
@@ -198,17 +222,18 @@ main,
   text-transform: uppercase;
   color: var(--white);
   font-family: var(--heading);
-  font-size: clamp(2.55rem, 4.35vw, 4.6rem);
-  line-height: 0.87;
-  letter-spacing: -0.03em;
+  font-size: clamp(2.5rem, 4vw, 3.75rem);
+  font-weight: 500;
+  line-height: 0.78;
+  letter-spacing: -0.01em;
   white-space: nowrap;
 }
 
 .hero-offer {
   position: absolute;
   left: clamp(20px, 50vw, 650px);
-  bottom: clamp(0px, 4.8vh, 38px);
-  width: clamp(280px, 31vw, 458px);
+  bottom: 0;
+  width: clamp(300px, 30.2%, 433px);
   min-height: 146px;
   border-radius: var(--radius-xl) 0 0 var(--radius-xl);
   display: grid;
@@ -225,10 +250,10 @@ main,
   text-transform: uppercase;
   color: var(--white);
   font-family: var(--heading);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  font-size: clamp(1.2rem, 1.75vw, 2rem);
-  line-height: 0.9;
+  font-weight: 700;
+  letter-spacing: -0.012em;
+  font-size: clamp(1.05rem, 1.55vw, 1.65rem);
+  line-height: 0.88;
   transition: opacity 240ms ease;
 }
 
@@ -254,7 +279,7 @@ main,
 .book-now {
   position: absolute;
   right: clamp(22px, 5vw, 79px);
-  bottom: clamp(0px, 4.8vh, 38px);
+  bottom: 0;
   width: 193px;
   height: 146px;
   border-radius: var(--radius-xl) var(--radius-xl) 0 0;
@@ -263,9 +288,10 @@ main,
   place-content: center;
   color: var(--white);
   font-family: var(--heading);
-  font-size: clamp(2.2rem, 2.9vw, 3.3rem);
-  line-height: 0.84;
-  letter-spacing: -0.03em;
+  font-size: clamp(2.2rem, 2.75vw, 3.05rem);
+  font-weight: 700;
+  line-height: 0.96;
+  letter-spacing: -0.02em;
   text-transform: capitalize;
   white-space: nowrap;
   box-shadow: var(--shadow-md);
@@ -279,13 +305,13 @@ main,
 
 .section {
   width: min(calc(100% - 30px), var(--max));
-  margin: 64px auto 0;
+  margin: 56px auto 0;
 }
 
 .about-grid {
   display: grid;
   grid-template-columns: 411px minmax(320px, 1fr);
-  gap: clamp(28px, 4vw, 130px);
+  gap: clamp(28px, 4vw, 110px);
   align-items: center;
 }
 
@@ -817,7 +843,8 @@ main,
   }
 
   .hero-copy h1 {
-    font-size: clamp(1.95rem, 8.6vw, 2.8rem);
+    font-size: clamp(2.15rem, 8.7vw, 2.95rem);
+    font-weight: 700;
     line-height: 0.88;
   }
 
@@ -832,7 +859,7 @@ main,
 
   .hero-offer p {
     padding: 12px;
-    font-size: clamp(0.96rem, 4.9vw, 1.4rem);
+    font-size: clamp(0.92rem, 4.7vw, 1.32rem);
     line-height: 0.88;
   }
 
@@ -848,8 +875,8 @@ main,
     right: 14px;
     bottom: 0;
     border-radius: 16px 16px 0 0;
-    font-size: clamp(1.6rem, 6.4vw, 2.05rem);
-    line-height: 0.9;
+    font-size: clamp(1.58rem, 6.3vw, 2rem);
+    line-height: 0.96;
   }
 
   .section {
