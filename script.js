@@ -2,6 +2,8 @@
   const menuButton = document.getElementById("menuButton");
   const siteMenu = document.getElementById("siteMenu");
   const heroOfferText = document.getElementById("heroOfferText");
+  const heroOfferMeta = document.getElementById("heroOfferMeta");
+  const heroOfferDate = document.getElementById("heroOfferDate");
 
   document.querySelectorAll(".reveal").forEach((item) => {
     item.style.setProperty("--delay", item.dataset.revealDelay || "0s");
@@ -39,19 +41,41 @@
   }
 
   const offerLines = [
-    "Comprehensive, Patient-Centered Care For A Healthier You",
-    "50% Discount On Your First Visit With Flowspace",
-    "Sign Up For The Flow Space Longevity Program"
+    {
+      text: "50% Discount On Your First Visit With Flowspace",
+      date: "23rd Mar"
+    },
+    {
+      text: "Comprehensive, Patient-Centered Care For A Healthier You",
+      date: ""
+    },
+    {
+      text: "Sign Up For The Flow Space Longevity Program",
+      date: ""
+    }
   ];
 
   let offerIndex = 0;
+  const applyOfferLine = (offerLine) => {
+    if (!heroOfferText) return;
+    heroOfferText.textContent = offerLine.text;
+
+    if (heroOfferMeta && heroOfferDate) {
+      const hasDate = Boolean(offerLine.date);
+      heroOfferMeta.classList.toggle("hidden", !hasDate);
+      heroOfferDate.textContent = offerLine.date;
+    }
+  };
+
   if (heroOfferText) {
+    applyOfferLine(offerLines[offerIndex]);
+
     setInterval(() => {
       offerIndex = (offerIndex + 1) % offerLines.length;
       heroOfferText.style.opacity = "0";
 
       window.setTimeout(() => {
-        heroOfferText.textContent = offerLines[offerIndex];
+        applyOfferLine(offerLines[offerIndex]);
         heroOfferText.style.opacity = "1";
       }, 180);
     }, 4300);

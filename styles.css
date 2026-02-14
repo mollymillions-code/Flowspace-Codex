@@ -38,8 +38,12 @@
   --shadow-md: 0 14px 34px rgba(6, 10, 13, 0.24);
   --radius-xl: 20px;
   --radius-2xl: 30px;
-  --max: 1280px;
-  --heading: "Neutra Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --max: 1600px;
+  --edge: clamp(14px, 3.2vw, 56px);
+  --hero-edge: clamp(14px, 3.2vw, 56px);
+  --hero-scale: clamp(0.5, calc(100vw / 1440px), 1.22);
+  --heading: "Neutra Text", "Helvetica Neue Condensed Bold", "Arial Narrow Bold", "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
   --body: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
@@ -55,6 +59,7 @@ body {
   margin: 0;
   font-family: var(--body);
   color: var(--ink);
+  overflow-x: hidden;
   background:
     radial-gradient(circle at 8% 10%, #ffffff 0%, transparent 40%),
     radial-gradient(circle at 92% 18%, #dde9f2 0%, transparent 37%),
@@ -84,10 +89,10 @@ main,
 
 .top-nav {
   position: fixed;
-  top: 18px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: min(calc(100% - 30px), var(--max));
+  top: clamp(12px, 2vh, 24px);
+  left: 0;
+  width: 100%;
+  padding: 0 var(--hero-edge);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -95,15 +100,15 @@ main,
 }
 
 .logo-link img {
-  width: 88px;
+  width: clamp(68px, calc(76px * var(--hero-scale)), 108px);
   height: auto;
   display: block;
   filter: drop-shadow(0 5px 12px rgba(0, 0, 0, 0.26));
 }
 
 .menu-button {
-  width: 66px;
-  height: 66px;
+  width: clamp(54px, calc(56px * var(--hero-scale)), 76px);
+  height: clamp(54px, calc(56px * var(--hero-scale)), 76px);
   border: 0;
   border-radius: 50%;
   background: rgba(64, 95, 115, 0.88);
@@ -122,7 +127,7 @@ main,
 }
 
 .menu-button span {
-  width: 24px;
+  width: clamp(20px, calc(21px * var(--hero-scale)), 28px);
   height: 2px;
   background: var(--white);
   border-radius: 99px;
@@ -130,7 +135,7 @@ main,
 
 .site-menu {
   position: fixed;
-  right: max(15px, calc((100vw - var(--max)) / 2));
+  right: var(--hero-edge);
   top: 100px;
   width: min(290px, calc(100vw - 30px));
   padding: 18px;
@@ -168,15 +173,14 @@ main,
 
 .hero {
   position: relative;
-  width: min(calc(100% - 28px), var(--max));
-  margin: 14px auto 0;
-  aspect-ratio: 1440 / 772;
-  min-height: 552px;
-  max-height: 772px;
-  border-radius: 28px;
+  width: 100%;
+  margin: 0;
+  height: 100vh;
+  min-height: 640px;
   overflow: hidden;
-  box-shadow: var(--shadow-xl);
-  border: 1px solid rgba(255, 255, 255, 0.38);
+  border-radius: 0;
+  box-shadow: none;
+  border: 0;
 }
 
 .hero-slides,
@@ -207,14 +211,15 @@ main,
 
 .hero-copy {
   position: absolute;
-  top: clamp(104px, 10vw, 146px);
-  left: clamp(12px, 4.3vw, 58px);
-  width: min(86vw, 520px);
-  background: linear-gradient(118deg, rgba(217, 217, 217, 0.18), rgba(155, 165, 171, 0.12));
-  border-radius: var(--radius-xl);
+  top: calc(145px * var(--hero-scale));
+  left: 0;
+  width: min(calc(640px * var(--hero-scale)), calc(100vw - (var(--hero-edge) * 2)));
+  background: linear-gradient(105deg, rgba(217, 217, 217, 0.28), rgba(115, 124, 130, 0.18));
+  border-radius: clamp(16px, calc(20px * var(--hero-scale)), 28px);
   border: 1px solid rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(30px);
-  padding: 18px 22px 18px;
+  padding: calc(28px * var(--hero-scale)) calc(28px * var(--hero-scale)) calc(24px * var(--hero-scale))
+    calc(82px * var(--hero-scale));
 }
 
 .hero-copy h1 {
@@ -222,52 +227,93 @@ main,
   text-transform: uppercase;
   color: var(--white);
   font-family: var(--heading);
-  font-size: clamp(2.5rem, 4vw, 3.75rem);
-  font-weight: 500;
+  font-size: calc(60px * var(--hero-scale));
+  font-weight: 700;
   line-height: 0.78;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.03em;
   white-space: nowrap;
 }
 
 .hero-offer {
   position: absolute;
-  left: clamp(20px, 50vw, 650px);
+  right: calc(193px * var(--hero-scale));
   bottom: 0;
-  width: clamp(300px, 30.2%, 433px);
-  min-height: 146px;
-  border-radius: var(--radius-xl) 0 0 var(--radius-xl);
+  width: calc(433px * var(--hero-scale));
+  height: calc(148px * var(--hero-scale));
+  border-radius: clamp(16px, calc(20px * var(--hero-scale)), 28px) 0 0 0;
   display: grid;
-  grid-template-columns: 1fr 78px;
-  background: linear-gradient(120deg, rgba(217, 217, 217, 0.11), rgba(217, 217, 217, 0.06));
+  grid-template-columns: minmax(0, 1fr) calc(78px * var(--hero-scale));
+  background: linear-gradient(120deg, rgba(217, 217, 217, 0.15), rgba(73, 80, 89, 0.2));
   border: 1px solid rgba(255, 255, 255, 0.14);
   backdrop-filter: blur(30px);
 }
 
+.hero-offer-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: calc(18px * var(--hero-scale)) calc(16px * var(--hero-scale)) calc(14px * var(--hero-scale))
+    calc(22px * var(--hero-scale));
+}
+
 .hero-offer p {
   margin: 0;
-  align-self: center;
-  padding: 14px 18px 14px 22px;
   text-transform: uppercase;
+  color: var(--white);
+  font-family: var(--body);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  font-size: calc(23px * var(--hero-scale));
+  line-height: 0.9;
+  transition: opacity 240ms ease, transform 240ms ease;
+}
+
+.offer-meta {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: calc(8px * var(--hero-scale));
+  opacity: 1;
+  transition: opacity 240ms ease;
+}
+
+.offer-meta.hidden {
+  opacity: 0;
+}
+
+.offer-valid {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.92);
+  text-transform: uppercase;
+  font-family: var(--body);
+  font-size: calc(16px * var(--hero-scale));
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.offer-date {
+  margin: 0;
   color: var(--white);
   font-family: var(--heading);
   font-weight: 700;
-  letter-spacing: -0.012em;
-  font-size: clamp(1.05rem, 1.55vw, 1.65rem);
-  line-height: 0.88;
-  transition: opacity 240ms ease;
+  font-size: calc(56px * var(--hero-scale));
+  line-height: 0.78;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
 }
 
 .offer-arrow {
   align-self: center;
   justify-self: center;
-  width: 42px;
-  height: 42px;
+  width: calc(56px * var(--hero-scale));
+  height: calc(56px * var(--hero-scale));
   border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.9);
   display: grid;
   place-items: center;
   color: var(--white);
-  font-size: 2rem;
+  font-size: calc(42px * var(--hero-scale));
   line-height: 1;
   transition: transform 200ms ease;
 }
@@ -278,21 +324,23 @@ main,
 
 .book-now {
   position: absolute;
-  right: clamp(22px, 5vw, 79px);
+  right: 0;
   bottom: 0;
-  width: 193px;
-  height: 146px;
-  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  width: calc(193px * var(--hero-scale));
+  height: calc(146px * var(--hero-scale));
+  border-radius: clamp(16px, calc(20px * var(--hero-scale)), 28px) 0 0 0;
   background: var(--teal);
-  display: grid;
-  place-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: calc(18px * var(--hero-scale));
   color: var(--white);
   font-family: var(--heading);
-  font-size: clamp(2.2rem, 2.75vw, 3.05rem);
+  font-size: calc(42px * var(--hero-scale));
   font-weight: 700;
-  line-height: 0.96;
+  line-height: 0.85;
   letter-spacing: -0.02em;
-  text-transform: capitalize;
+  text-transform: none;
   white-space: nowrap;
   box-shadow: var(--shadow-md);
   transition: transform 200ms ease, background 200ms ease;
@@ -304,8 +352,9 @@ main,
 }
 
 .section {
-  width: min(calc(100% - 30px), var(--max));
-  margin: 56px auto 0;
+  width: 100%;
+  margin: 56px 0 0;
+  padding: 0 var(--edge);
 }
 
 .about-grid {
@@ -313,6 +362,8 @@ main,
   grid-template-columns: 411px minmax(320px, 1fr);
   gap: clamp(28px, 4vw, 110px);
   align-items: center;
+  max-width: var(--max);
+  margin: 0 auto;
 }
 
 .about-image {
@@ -362,6 +413,8 @@ main,
 }
 
 .why-wrap {
+  max-width: var(--max);
+  margin: 0 auto;
   border-radius: var(--radius-xl);
   padding: clamp(22px, 3vw, 38px);
   background: linear-gradient(145deg, #ffffff, #edf1f4);
@@ -393,9 +446,15 @@ main,
   font-size: clamp(2.2rem, 3.8vw, 4rem);
 }
 
+.offerings-head {
+  max-width: var(--max);
+  margin: 0 auto;
+}
+
 .offering-feature {
   position: relative;
-  margin-top: 22px;
+  max-width: var(--max);
+  margin: 22px auto 0;
   height: clamp(420px, 42vw, 560px);
   border-radius: var(--radius-xl);
   overflow: hidden;
@@ -433,7 +492,8 @@ main,
 }
 
 .offering-grid {
-  margin-top: 26px;
+  max-width: var(--max);
+  margin: 26px auto 0;
   display: grid;
   grid-template-columns: repeat(3, minmax(220px, 1fr));
   gap: 0;
@@ -620,9 +680,9 @@ main,
 }
 
 .site-footer {
-  width: min(calc(100% - 28px), var(--max));
-  margin: 92px auto 18px;
-  border-radius: var(--radius-2xl);
+  width: 100%;
+  margin: 92px 0 0;
+  border-radius: 0;
   overflow: hidden;
   background:
     radial-gradient(circle at 85% 15%, rgba(88, 123, 146, 0.35), transparent 38%),
@@ -770,17 +830,62 @@ main,
 }
 
 @media (max-width: 1120px) {
+  :root {
+    --hero-scale: clamp(0.5, calc(100vw / 1440px), 0.92);
+  }
+
   .hero {
-    min-height: 480px;
+    min-height: 580px;
+  }
+
+  .hero-copy {
+    top: clamp(118px, 15vh, 160px);
+    width: min(calc(680px * var(--hero-scale)), calc(100vw - (var(--hero-edge) * 1.5)));
+    padding-left: clamp(34px, 5.8vw, 56px);
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(2.9rem, 6vw, 4rem);
+    white-space: normal;
+    max-width: 100%;
+    line-height: 0.84;
   }
 
   .hero-offer {
-    left: 24px;
-    width: calc(100% - 193px - 48px);
+    right: clamp(148px, 17vw, 188px);
+    width: min(48vw, 432px);
+    height: 130px;
+    grid-template-columns: minmax(0, 1fr) 62px;
+  }
+
+  .hero-offer-text {
+    padding: 14px 12px 10px 16px;
+  }
+
+  .hero-offer p {
+    font-size: clamp(1.08rem, 2.3vw, 1.52rem);
+    line-height: 0.95;
+  }
+
+  .offer-valid {
+    font-size: 0.74rem;
+  }
+
+  .offer-date {
+    font-size: clamp(1.8rem, 4vw, 2.55rem);
+  }
+
+  .offer-arrow {
+    width: 42px;
+    height: 42px;
+    font-size: 1.9rem;
   }
 
   .book-now {
-    right: 24px;
+    right: 0;
+    width: clamp(148px, 17vw, 188px);
+    height: 130px;
+    font-size: clamp(1.75rem, 4.3vw, 2.45rem);
   }
 
   .about-grid {
@@ -812,76 +917,102 @@ main,
 }
 
 @media (max-width: 760px) {
+  :root {
+    --hero-edge: 8px;
+  }
+
   .top-nav {
-    top: 12px;
-    width: calc(100% - 16px);
+    top: 14px;
+    padding: 0 var(--hero-edge);
   }
 
   .menu-button {
-    width: 56px;
-    height: 56px;
+    width: 60px;
+    height: 60px;
   }
 
   .logo-link img {
-    width: 72px;
+    width: 76px;
   }
 
   .hero {
-    width: calc(100% - 14px);
-    margin-top: 10px;
-    border-radius: 18px;
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
     aspect-ratio: auto;
-    height: min(95vh, 760px);
-    min-height: 0;
+    height: 100dvh;
+    min-height: 700px;
   }
 
   .hero-copy {
-    top: 108px;
-    left: 14px;
-    max-width: calc(100% - 28px);
-    padding: 14px 14px 16px;
+    top: 116px;
+    left: 8px;
+    width: calc(100% - 16px);
+    max-width: none;
+    border-radius: 18px;
+    padding: 14px 12px 14px 24px;
   }
 
   .hero-copy h1 {
-    font-size: clamp(2.15rem, 8.7vw, 2.95rem);
+    font-size: clamp(1.68rem, 7vw, 2.3rem);
     font-weight: 700;
     line-height: 0.88;
+    white-space: nowrap;
   }
 
   .hero-offer {
-    left: 14px;
+    left: 8px;
+    right: 140px;
     bottom: 0;
-    width: calc(100% - 136px - 20px);
-    min-height: 112px;
-    grid-template-columns: 1fr 58px;
+    width: auto;
+    height: 112px;
+    grid-template-columns: 1fr 48px;
     border-radius: 14px 0 0 0;
   }
 
+  .hero-offer-text {
+    padding: 10px 8px 8px 12px;
+  }
+
   .hero-offer p {
-    padding: 12px;
-    font-size: clamp(0.92rem, 4.7vw, 1.32rem);
-    line-height: 0.88;
+    font-size: clamp(0.9rem, 4.2vw, 1.22rem);
+    line-height: 0.9;
+  }
+
+  .offer-meta {
+    margin-top: 4px;
+  }
+
+  .offer-valid {
+    font-size: 0.62rem;
+  }
+
+  .offer-date {
+    font-size: clamp(1.45rem, 7.2vw, 1.95rem);
+    line-height: 0.82;
   }
 
   .offer-arrow {
     width: 34px;
     height: 34px;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
   }
 
   .book-now {
-    width: 126px;
+    width: 140px;
     height: 112px;
-    right: 14px;
+    right: 0;
     bottom: 0;
-    border-radius: 16px 16px 0 0;
-    font-size: clamp(1.58rem, 6.3vw, 2rem);
-    line-height: 0.96;
+    border-radius: 16px 0 0 0;
+    font-size: clamp(1.55rem, 6.2vw, 1.95rem);
+    line-height: 0.92;
+    padding-inline: 8px;
   }
 
   .section {
-    width: calc(100% - 18px);
+    width: 100%;
     margin-top: 44px;
+    padding: 0 var(--edge);
   }
 
   .offering-grid {
@@ -910,9 +1041,9 @@ main,
   }
 
   .site-footer {
-    width: calc(100% - 14px);
+    width: 100%;
     margin-top: 54px;
-    border-radius: 20px;
+    border-radius: 0;
   }
 
   .footer-top,
