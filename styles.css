@@ -185,7 +185,7 @@ main,
   position: absolute;
   top: clamp(116px, 11vw, 170px);
   left: clamp(20px, 5vw, 72px);
-  max-width: min(86vw, 520px);
+  width: min(86vw, 520px);
   background: linear-gradient(118deg, rgba(217, 217, 217, 0.18), rgba(155, 165, 171, 0.12));
   border-radius: var(--radius-xl);
   border: 1px solid rgba(255, 255, 255, 0.15);
@@ -198,9 +198,10 @@ main,
   text-transform: uppercase;
   color: var(--white);
   font-family: var(--heading);
-  font-size: clamp(2.6rem, 4.8vw, 5.25rem);
+  font-size: clamp(2.55rem, 4.35vw, 4.6rem);
   line-height: 0.87;
   letter-spacing: -0.03em;
+  white-space: nowrap;
 }
 
 .hero-offer {
@@ -226,7 +227,7 @@ main,
   font-family: var(--heading);
   font-weight: 600;
   letter-spacing: -0.02em;
-  font-size: clamp(1.6rem, 1.95vw, 2.4rem);
+  font-size: clamp(1.2rem, 1.75vw, 2rem);
   line-height: 0.9;
   transition: opacity 240ms ease;
 }
@@ -262,10 +263,11 @@ main,
   place-content: center;
   color: var(--white);
   font-family: var(--heading);
-  font-size: clamp(3.25rem, 4.2vw, 5rem);
-  line-height: 0.75;
+  font-size: clamp(2.2rem, 2.9vw, 3.3rem);
+  line-height: 0.84;
   letter-spacing: -0.03em;
   text-transform: capitalize;
+  white-space: nowrap;
   box-shadow: var(--shadow-md);
   transition: transform 200ms ease, background 200ms ease;
 }
@@ -815,8 +817,8 @@ main,
   }
 
   .hero-copy h1 {
-    font-size: clamp(2.45rem, 12vw, 4rem);
-    line-height: 0.9;
+    font-size: clamp(1.95rem, 8.6vw, 2.8rem);
+    line-height: 0.88;
   }
 
   .hero-offer {
@@ -830,7 +832,7 @@ main,
 
   .hero-offer p {
     padding: 12px;
-    font-size: clamp(1.55rem, 6vw, 2rem);
+    font-size: clamp(0.96rem, 4.9vw, 1.4rem);
     line-height: 0.88;
   }
 
@@ -846,8 +848,8 @@ main,
     right: 14px;
     bottom: 0;
     border-radius: 16px 16px 0 0;
-    font-size: clamp(2.6rem, 8.2vw, 3.2rem);
-    line-height: 0.76;
+    font-size: clamp(1.6rem, 6.4vw, 2.05rem);
+    line-height: 0.9;
   }
 
   .section {
